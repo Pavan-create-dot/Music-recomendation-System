@@ -42,6 +42,11 @@ class TestMusicRecommenderSystem(unittest.TestCase):
             def load_data(self):
                 return cls.mock_data.copy()
                 
+        # Redirect cache directories for unit testing to avoid corrupting production cache
+        config.SIMILARITY_MATRIX_CACHE = os.path.join(config.MODEL_CACHE_DIR, "test_cosine_sim_matrix.pkl")
+        config.TFIDF_VECTORIZER_CACHE = os.path.join(config.MODEL_CACHE_DIR, "test_tfidf_vectorizer.pkl")
+        config.PROCESSED_DATA_CACHE = os.path.join(config.MODEL_CACHE_DIR, "test_processed_df.pkl")
+
         cls.recommender = MusicRecommender(data_loader=MockDataLoader())
         cls.recommender.initialize(force_recompute=True)
 
