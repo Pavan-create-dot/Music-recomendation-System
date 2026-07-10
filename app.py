@@ -155,7 +155,10 @@ with st.sidebar:
     
     # Filter by Artist if it exists
     available_artists = ["All"]
-    available_artists += sorted(df["artist_name"].dropna().unique().tolist())
+    if "artist_name" in df.columns:
+        # Extract the primary (first) artist from comma-separated lists
+        primary_artists = df["artist_name"].dropna().apply(lambda x: x.split(",")[0].strip())
+        available_artists += sorted(primary_artists.unique().tolist())
     selected_artist = st.selectbox("Filter by Artist Name:", available_artists)
     
     st.markdown("---")
@@ -169,7 +172,8 @@ filtered_df = df.copy()
 if selected_language != "All":
     filtered_df = filtered_df[filtered_df["language"] == selected_language]
 if selected_artist != "All":
-    filtered_df = filtered_df[filtered_df["artist_name"] == selected_artist]
+    # Filter matches where the selected artist is either the primary or co-artist
+    filtered_df = filtered_df[filtered_df["artist_name"].str.contains(selected_artist, case=False, na=False)]
 
 # App header layout
 col1, col2 = st.columns([4, 1])
