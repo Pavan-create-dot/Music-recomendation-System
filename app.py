@@ -142,7 +142,7 @@ if "history" not in st.session_state:
 
 # Sidebar Navigation and Filters
 with st.sidebar:
-    st.image("https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=300&auto=format&fit=crop&q=60", use_column_width=True)
+    st.image("https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=300&auto=format&fit=crop&q=60", use_container_width=True)
     st.title("🎧 VibeSync Controls")
     
     st.subheader("Filters")
