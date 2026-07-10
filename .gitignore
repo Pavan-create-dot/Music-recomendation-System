@@ -1,0 +1,22 @@
+# Python environments
+.venv/
+venv/
+ENV/
+env/
+
+# Cache directories
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+cache/
+.ipynb_checkpoints/
+
+# System-specific files
+.DS_Store
+Thumbs.db
+
+# Large dataset files (ignore only the cached matrices and local logs, keep tracks CSV)
+music_recommender.log
+*.pkl
