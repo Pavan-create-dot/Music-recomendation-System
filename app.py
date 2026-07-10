@@ -224,7 +224,7 @@ if selected_index is not None:
         # Action Buttons
         sub_c1, sub_c2 = st.columns([1, 3])
         with sub_c1:
-            st.markdown(f'<a href="{meta["track_url"]}" target="_blank" class="spotify-btn">💚 Spotify Link</a>', unsafe_allow_html=True)
+            st.html(f'<a href="{meta["track_url"]}" target="_blank" class="spotify-btn">💚 Spotify Link</a>')
         
         with sub_c2:
             fav_id = f"{current_song['track_name']} - {current_song['artist_name']}"
@@ -271,7 +271,7 @@ if selected_index is not None:
                 )
                 
                 # Render beautiful custom card
-                st.markdown(
+                st.html(
                     f"""
                     <div class="song-card">
                         <div style="text-align: center; margin-bottom: 8px;">
@@ -290,8 +290,7 @@ if selected_index is not None:
                             <a href="{rec_meta['track_url']}" target="_blank" class="spotify-btn" style="width:100%;">Listen on Spotify</a>
                         </div>
                     </div>
-                    """,
-                    unsafe_allow_html=True
+                    """
                 )
     else:
         st.info("No recommendations found.")
